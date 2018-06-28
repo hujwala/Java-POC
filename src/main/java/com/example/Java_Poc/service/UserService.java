@@ -2,6 +2,7 @@ package com.example.Java_Poc.service;
 
 import com.example.Java_Poc.Repo.UserRepo;
 import com.example.Java_Poc.model.User;
+import com.example.Java_Poc.utils.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +17,11 @@ public class UserService {
     UserRepo userRepo;
 
 
-    public User addUser(User user) {
-        User saveUser = userRepo.save(user);
-        return saveUser;
+    public int addUser(User user) {
+        int retVal;
+        if((retVal = validate(user)) == 0)
+          userRepo.save(user);
+        return retVal;
     }
 
     public List<User> getAllusers() {
@@ -26,4 +29,13 @@ public class UserService {
         userRepo.findAll().forEach(user::add);
         return user;
     }
+
+    public int validate(User user){
+        int retVal;
+        if((retVal = Validator.validateName(user.getName())) == 0)
+            if ((retVal = Validator.validatePhoneNumber(String.valueOf(user.getPhoneNumber()))) == 0)
+                return 0;
+        return retVal;
+    }
+
 }
