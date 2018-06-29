@@ -10,24 +10,38 @@ import java.util.Date;
 
 @Entity
 public class User {
+    public User(String message) {
+        this.message = message;
+    }
+
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private Long userId;
     private String email;
     private  String password;
-    private  int phoneNumber;
+    private  Long phoneNumber;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     private String name;
     private Long annualIncome;
     private Date dateOfBirth;
     private Date createedAt;
     private Date updatedAt;
+    private String message;
 
 
 
     public User() {
     }
 
-    public User(Long userId, String email, String password, int phoneNumber, String name, Long annualIncome, Date dateOfBirth, Date createdAt, Date updatedAt) {
+    public User(Long userId, String email, String password, Long phoneNumber, String name, Long annualIncome, Date dateOfBirth, Date createdAt, Date updatedAt) {
         this.email = email;
         this.userId = userId;
         this.password = password;
@@ -38,7 +52,6 @@ public class User {
         this.createedAt = createdAt;
         this.updatedAt = updatedAt;
     }
-
 
 
 
@@ -59,11 +72,11 @@ public class User {
         this.password = password;
     }
 
-    public int getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -113,6 +126,19 @@ public class User {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+
+    @Override
+    public String toString() {
+        return "'user': {" +
+                "'email': '" + getEmail() + "'," +
+                "'password': '" + getPassword() + "'," +
+                "'phoneNumber': '" + getPhoneNumber() + "'," +
+                "'name': '" + getName() + "'," +
+                "'annualIncome': '" + getAnnualIncome() + "'," +
+                "'dateOfBirth': '" + getDateOfBirth() + "'" +
+                "}";
     }
 
 }
