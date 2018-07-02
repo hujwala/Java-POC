@@ -42,13 +42,13 @@ public class Validator {
         return 0;
     }
     public static final int validateanuual(String aAnnual){
-        if (!aAnnual.matches("[0-9]")){
+        if (!aAnnual.matches("^[0-9]+$")){
             return 7;
         }
         return 0;
     }
 
-    public static final int validateDate(String aDate){
+    /*public static final int validateDate(String aDate){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setLenient(false);
         try
@@ -61,5 +61,5 @@ public class Validator {
             System.out.println(aDate+ "Is InValid");
             return 9;
         }
-    }
+    }*/
 }

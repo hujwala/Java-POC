@@ -20,15 +20,6 @@ public class User {
     private String email;
     private  String password;
     private  Long phoneNumber;
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     private String name;
     private Long annualIncome;
     private Date dateOfBirth;
@@ -127,18 +118,13 @@ public class User {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
-
-
-    @Override
-    public String toString() {
-        return "'user': {" +
-                "'email': '" + getEmail() + "'," +
-                "'password': '" + getPassword() + "'," +
-                "'phoneNumber': '" + getPhoneNumber() + "'," +
-                "'name': '" + getName() + "'," +
-                "'annualIncome': '" + getAnnualIncome() + "'," +
-                "'dateOfBirth': '" + getDateOfBirth() + "'" +
-                "}";
+    public String getMessage() {
+        return message;
     }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
 
 }
