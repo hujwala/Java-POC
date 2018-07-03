@@ -23,8 +23,8 @@ public class UserService {
 
     public int addUser(User user) {
         int retVal;
-        if((retVal = validate(user)) == 0)
-          userRepo.save(user);
+        if ((retVal = validate(user)) == 0)
+            userRepo.save(user);
         return retVal;
     }
 
@@ -35,57 +35,36 @@ public class UserService {
     }
 
 
-   /* public User getLogiData(User aUser) {
+    public User getLogiData(User aUser) {
         String succMsg = null;
         String success;
-        List<User> user=new ArrayList<>();
-        user = userRepo.findAll();//.forEach(user::add);
-        for(int i=0;i<user.size();i++){
-            User lUser=user.get(i);
-            StringBuilder sb = new StringBuilder("");
-            if(lUser.getEmail().equalsIgnoreCase(aUser.getEmail()) && lUser.getPassword().equals(aUser.getPassword())) {
+        StringBuilder sb = new StringBuilder("");
+        User lUser = userRepo.findByEmail(aUser.getEmail());
+        System.out.println(lUser);
+        if(lUser != null) {
+            if (lUser.getPassword().equals(aUser.getPassword())) {
+                String saveUserDetails = lUser.getEmail();
                 succMsg = env.getProperty("user." + 10);
                 sb.append("{").append("'message':'").append(succMsg).append("','success': true'").append("'}");
-                user.get(i).setMessage(sb.toString());
-                return user.get(i);
-            }else{
+                aUser.setMessage(sb.toString());
+                return aUser;
+            } else {
                 succMsg = env.getProperty("user." + 11);
-                sb.append("{'user':{},").append("'message':'").append(succMsg).append("','success': false'").append("'}");
-                user.get(i).setMessage(sb.toString());
-                //return user.get(i);
+                sb.append("{").append("'message':'").append(succMsg).append("','success': false'").append("'}");
+                aUser.setMessage(sb.toString());
+                return aUser;
+
             }
+        }else{
+            succMsg = env.getProperty("user." + 12);
+            sb.append("{").append("'message':'").append(succMsg).append("','success': false'").append("'}");
+            aUser.setMessage(sb.toString());
+            return aUser;
         }
 
-        return null;
-    }*/
+    }
 
 
-       public User getLogiData(User aUser) {
-           String succMsg = null;
-           String success;
-           StringBuilder sb = new StringBuilder("");
-            User lUser = userRepo.findByEmail(aUser.getEmail());
-           System.out.println(lUser);
-           if(lUser != null) {
-               if (lUser.getPassword().equals(aUser.getPassword())) {
-                   succMsg = env.getProperty("user." + 10);
-                   sb.append("{").append("'message':'").append(succMsg).append("','success': true'").append("'}");
-                   aUser.setMessage(sb.toString());
-                   return aUser;
-               } else {
-                   succMsg = env.getProperty("user." + 11);
-                   sb.append("{").append("'message':'").append(succMsg).append("','success': false'").append("'}");
-                   aUser.setMessage(sb.toString());
-                   return aUser;
-               }
-           }else{
-               succMsg = env.getProperty("user." + 12);
-               sb.append("{").append("'message':'").append(succMsg).append("','success': false'").append("'}");
-               aUser.setMessage(sb.toString());
-               return aUser;
-           }
-
-       }
 
 
     public int validate(User user){

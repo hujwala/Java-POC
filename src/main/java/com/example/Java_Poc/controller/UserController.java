@@ -48,19 +48,14 @@ public class UserController {
         }
     }
 
-    @PostMapping(value = "/login")
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public User getLoginData(@RequestBody User aUser){
-  /*      if(userService.getLogiData(aUser).getEmail()!=null){
-            System.out.println("Not ----null--");
-        }else{
-            System.out.println(" ----null--");
-        }*/
         return userService.getLogiData(aUser);
 
     }
 
 
-    @GetMapping("/users")
+    @GetMapping(value = "/users",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getAlluser() {
         return userService.getAllusers();
     }
