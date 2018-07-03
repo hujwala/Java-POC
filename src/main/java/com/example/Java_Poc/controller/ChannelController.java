@@ -2,8 +2,8 @@ package com.example.Java_Poc.controller;
 
 import com.example.Java_Poc.Repo.ClassificationRepo;
 import com.example.Java_Poc.Repo.ChannelRepo;
+import com.example.Java_Poc.Repo.UserRepo;
 import com.example.Java_Poc.model.Channel;
-import com.example.Java_Poc.model.Classification;
 import com.example.Java_Poc.service.ChannelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +19,8 @@ public class ChannelController {
     @Autowired
     private ClassificationRepo classificationRepo;
 
-
+    @Autowired
+    UserRepo userRepo;
     @Autowired
     ChannelService channelService;
 
@@ -28,11 +29,17 @@ public class ChannelController {
         this.classificationRepo = classificationRepo;
     }
 
-    @PostMapping(value = "/channel/{classificationId}")
+  /*  @PostMapping(value = "/channel/{classificationId}")
     public Channel create(@PathVariable Long classificationId, @RequestBody Channel aPack) {
         Classification attachToPackage = classificationRepo.findByClassificationId(classificationId);
         aPack.setClassification(attachToPackage);
         return channelRepo.save(aPack);
+    }*/
+
+
+    @PostMapping(value = "/channel/{classificationId}")
+    public void addClassification(@PathVariable Long classificationId, @RequestBody Channel aPack) {
+        channelService.addChannel(aPack, classificationId);
     }
 
     @GetMapping("/channels")

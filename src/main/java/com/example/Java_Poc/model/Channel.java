@@ -1,5 +1,6 @@
 package com.example.Java_Poc.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -14,29 +15,33 @@ public class Channel implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
-    private Long Id;
+    private Long channelId;
     private String name;
     private long amount;
 
-    @ManyToOne(optional=false)
+    @ManyToOne
     @JoinColumn(name="classificationId" , referencedColumnName="classificationId")
     private Classification classification;
+
+
     public Channel(){
 
     }
 
-    public Channel(Long id, String name, long amount) {
-        Id = id;
+    public Channel(Long channelId, String name, long amount) {
+        channelId = channelId;
         this.name = name;
         this.amount = amount;
     }
 
+
+
     public Long getId() {
-        return Id;
+        return channelId;
     }
 
     public void setId(Long id) {
-        Id = id;
+        channelId = channelId;
     }
 
     public String getName() {
