@@ -31,7 +31,8 @@ public class User {
     public User() {
     }
 
-    public User(Long userId, String email, String password, Long phoneNumber, String name, Long annualIncome, Date dateOfBirth, Date createdAt, Date updatedAt) {
+
+    public User( Long userId, String email, String password, Long phoneNumber, String name, Long annualIncome, Date dateOfBirth, Date createdAt, Date updatedAt) {
         this.email = email;
         this.userId = userId;
         this.password = password;

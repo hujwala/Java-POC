@@ -34,6 +34,13 @@ public class Channel implements Serializable {
         this.amount = amount;
     }
 
+    public Long getChannelId () {
+        return channelId;
+    }
+
+    public void setChannelId ( Long channelId ) {
+        this.channelId = channelId;
+    }
 
 
     public Long getId() {
