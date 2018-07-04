@@ -29,12 +29,6 @@ public class ChannelController {
         this.classificationRepo = classificationRepo;
     }
 
-  /*  @PostMapping(value = "/channel/{classificationId}")
-    public Channel create(@PathVariable Long classificationId, @RequestBody Channel aPack) {
-        Classification attachToPackage = classificationRepo.findByClassificationId(classificationId);
-        aPack.setClassification(attachToPackage);
-        return channelRepo.save(aPack);
-    }*/
 
 
     @PostMapping(value = "/channel/{classificationId}")
